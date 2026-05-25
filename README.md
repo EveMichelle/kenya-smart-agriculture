@@ -1,35 +1,43 @@
-![Kenya Smart Agriculture](figures/logo.png)
-
-## Team Members
-
-**Eve Otieno**
-
 # Kenya Smart Agriculture & Market Intelligence Platform
 
-**County Risk Mapping · Food Price Forecasting · Food Security Classification · NLP News Intelligence**
+![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?style=flat-square&logo=jupyter)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
 
-**Using Machine Learning to Predict Where Kenya is Losing the Food Security Battle**
-
----
-
-## Project Overview
-
-An end-to-end machine learning platform that identifies food security risk across Kenya's 47 counties, forecasts food price changes, and analyses agricultural news sentiment — giving county governments, NGOs, and farmers precision intelligence to act before crises deepen.
+**Built by [Eve Otieno](https://github.com/EveMichelle)**
 
 ---
 
-## Business Understanding
+## Overview
 
-**Problem:** Kenya's food security response is reactive. By the time a county is officially declared in food crisis, the situation has already been deteriorating for months. Three valuable datasets exist in isolation: NASA records daily weather for every county since 2000, FEWS NET manually classifies food security phases quarterly, and KNBS collects market prices monthly — but none of these are connected or used predictively.
+An end-to-end machine learning platform that identifies food security risk across Kenya's 47 counties, forecasts food price changes, and analyses agricultural news sentiment — giving county governments, NGOs, and farmers intelligence to act before crises deepen.
 
-**Solution:** Three integrated models that give county governments and NGOs actionable intelligence before crises peak:
+Kenya has a food security problem that is not caused by lack of data. NASA has recorded daily weather for every county since 2000. FEWS NET has classified food security phases since 2009. KNBS has collected market prices every month. None of this data has ever been merged and used predictively. This project does exactly that.
+
+**[Live App →](https://kenya-smart-agriculture.streamlit.app)** *(update after deployment)*  
+**[Tableau Dashboard →](https://public.tableau.com)** *(update after publishing)*
+
+---
+
+## The Problem
+
+| Problem | Impact |
+|---|---|
+| Food security phases are assessed manually and quarterly — too slow | Emergency response arrives after the crisis has peaked |
+| Rainfall deficits drive food price spikes 2–3 months later, but no one connects the data | Farmers and traders get blindsided by price shocks |
+| Hundreds of agricultural news articles published weekly, never synthesised | Policy makers miss early warning signals |
+
+---
+
+## Solution — Three Integrated ML Models
 
 | Model | Question It Answers | Output |
 |---|---|---|
-| **Model 1 — Food Security Classifier** | Which counties are heading into food crisis right now? | IPC phase prediction per county (Minimal / Stressed / Crisis) |
-| **Model 2 — Price Forecasting** | How will food prices change in the next 2 months? | 8-week CPI forecast with confidence intervals |
-| **Model 3 — County Recommendation** | Which counties need the same intervention strategy? | Ranked similar counties by weather-IPC profile |
-| **Model 4 — NLP Sentiment** | What are farmers reading and worrying about? | News sentiment scores + topic clusters per county |
+| **Food Security Classifier** | Which counties are heading into food crisis? | IPC phase prediction per county |
+| **Price Forecasting** | How will food prices change in the next 8 weeks? | CPI forecast with confidence intervals |
+| **County Recommendation** | Which counties need the same intervention? | Ranked similar counties by weather + IPC profile |
+| **NLP Sentiment** | What are farmers reading and worrying about? | Sentiment scores + topic clusters |
 
 ---
 
@@ -37,25 +45,25 @@ An end-to-end machine learning platform that identifies food security risk acros
 
 | Stakeholder | How They Use This |
 |---|---|
-| **County Agricultural Officers** | Monthly drought risk scores + IPC phase predictions per county |
-| **WFP Kenya & NGOs** | Pre-position food stocks 2–3 months before price spikes |
-| **Smallholder Farmers & Cooperatives** | Which markets offer best prices + which crops to plant |
-| **Kenya Ministry of Agriculture** | National food security trend monitoring + policy response |
-| **KALRO** | Weather-yield correlations for crop advisory updates |
+| County Agricultural Officers | Monthly drought risk scores + IPC predictions per county |
+| WFP Kenya & NGOs | Pre-position food stocks 2–3 months before price spikes |
+| Smallholder Farmers | Which markets offer best prices |
+| Kenya Ministry of Agriculture | National food security trend monitoring |
+| KALRO | Weather-yield correlations for crop advisory updates |
 
 ---
 
 ## Data Sources
 
-### Dataset 1 — NASA POWER Weather API
+All datasets are raw and non-curated.
 
-Source: [power.larc.nasa.gov](https://power.larc.nasa.gov/api/temporal/daily/point)
-
-**Fetch using:** `python scripts/fetch_nasa.py` (auto-fetches all 47 counties)
+### NASA POWER Weather API
+**Source:** [power.larc.nasa.gov](https://power.larc.nasa.gov/api/temporal/daily/point)  
+**Fetch:** `python scripts/fetch_nasa.py`
 
 | File | Contents |
 |---|---|
-| `kenya_weather_all_counties.csv` | Daily weather for 47 counties, 2000–2023 |
+| `kenya_weather_all_counties.csv` | Daily weather for 47 counties, 2000–2023 (409,811 rows) |
 
 | Parameter | Description |
 |---|---|
@@ -65,31 +73,27 @@ Source: [power.larc.nasa.gov](https://power.larc.nasa.gov/api/temporal/daily/poi
 | `ALLSKY_SFC_SW_DWN` | Solar radiation (MJ/m²/day) |
 | `WS2M` | Wind speed at 2m (m/s) |
 
-### Dataset 2 — FEWS NET IPC Food Security
-
-Source: [fews.net/data/acute-food-insecurity](https://fews.net/data/acute-food-insecurity) → Download All Data → Filter Kenya
-
-| File | Contents |
-|---|---|
-| `kenya_ipc.csv` | IPC phase (1/2/3) for all 47 counties at sub-county level |
-
-### Dataset 3 — KNBS Consumer Price Index Reports
-
-Source: [knbs.or.ke/cpi-and-inflation-rates](https://www.knbs.or.ke/cpi-and-inflation-rates/) → download monthly PDFs
+### FEWS NET IPC Food Security Classifications
+**Source:** [fews.net/data/acute-food-insecurity](https://fews.net/data/acute-food-insecurity) → Download All Data → Filter Kenya
 
 | File | Contents |
 |---|---|
-| `knbs_cpi_raw_text.csv` | Raw text extracted from 37 monthly KNBS PDF reports (2021–2025) |
+| `kenya_ipc.csv` | IPC phase (1–3) for all 47 counties at sub-county level (640 rows) |
 
-### Dataset 4 — Kenya Agricultural News (Scraped)
-
-Source: [kenyanews.go.ke/category/agri](https://www.kenyanews.go.ke/category/agri/)
-
-**Scrape using:** `python scripts/scrape_news.py`
+### KNBS Consumer Price Index Reports
+**Source:** [knbs.or.ke/cpi-and-inflation-rates](https://www.knbs.or.ke/cpi-and-inflation-rates/)
 
 | File | Contents |
 |---|---|
-| `kenya_agri_news_raw.csv` | 300 agricultural news headlines (2025–2026) |
+| `knbs_cpi_raw_text.csv` | Raw text extracted from 37 monthly PDF reports, 2020–2025 |
+
+### Kenya Agricultural News
+**Source:** [kenyanews.go.ke/category/agri](https://www.kenyanews.go.ke/category/agri/)  
+**Scrape:** `python scripts/scrape_news.py`
+
+| File | Contents |
+|---|---|
+| `kenya_agri_news_raw.csv` | 300 agricultural news headlines, 2025–2026 |
 
 ---
 
@@ -105,7 +109,7 @@ kenya-smart-agriculture/
 │
 ├── data/
 │   ├── raw/
-│   │   ├── weather/                # NASA POWER CSVs (47 counties)
+│   │   ├── weather/                # NASA POWER CSVs
 │   │   ├── food_security/          # FEWS NET IPC CSV
 │   │   ├── prices/                 # KNBS CPI raw text CSV
 │   │   └── news/                   # Scraped news articles CSV
@@ -119,20 +123,19 @@ kenya-smart-agriculture/
 │   ├── 05_price_forecasting.ipynb
 │   ├── 06_recommendation.ipynb
 │   ├── 07_nlp_sentiment.ipynb
-│   └── final_notebook.ipynb        # Complete project walkthrough
+│   └── final_notebook.ipynb
 │
-├── scripts/                        # Production pipeline runners
-│   ├── fetch_nasa.py               # Fetch NASA data (run once)
-│   ├── scrape_news.py              # Scrape news articles (run once)
-│   ├── extract_data.py             # Step 1: Load & validate
-│   ├── prepare_data.py             # Step 2: Clean & engineer features
-│   ├── merge_data.py               # Step 3: Merge master dataset
-│   ├── train_model1.py             # Step 4: IPC classifier
-│   ├── train_model2.py             # Step 5: CPI forecaster
-│   └── train_model3.py             # Step 6: Recommendation system
+├── scripts/
+│   ├── fetch_nasa.py
+│   ├── scrape_news.py
+│   ├── extract_data.py
+│   ├── prepare_data.py
+│   ├── merge_data.py
+│   ├── train_model1.py
+│   ├── train_model2.py
+│   └── train_model3.py
 │
-├── src/                            # Reusable Python modules
-│   ├── __init__.py
+├── src/
 │   ├── load_data.py
 │   ├── clean_nasa.py
 │   ├── clean_ipc.py
@@ -146,16 +149,15 @@ kenya-smart-agriculture/
 │   ├── recommend.py
 │   └── pipeline.py
 │
-├── figures/                        # Saved visualisation outputs
-├── models/saved/                   # Serialised model artefacts (.pkl)
-├── presentation/                   # Non-technical slides
-├── tableau/                        # Tableau dashboard files + CSVs
+├── figures/
+├── models/saved/
+├── presentation/
+├── tableau/
 │
-├── constants.py                    # Shared paths, labels, county list
-├── main.py                         # Run full pipeline: python main.py
+├── constants.py
+├── main.py
 ├── requirements.txt
 ├── PROJECT_PLAN.md
-├── .gitignore
 └── README.md
 ```
 
@@ -163,59 +165,19 @@ kenya-smart-agriculture/
 
 ## Quick Start
 
-### Prerequisites
-- Python 3.8+
-- conda or virtualenv
-
-### Setup
-
 ```bash
-# Clone the repo
-git clone https://github.com/YOUR_USERNAME/kenya-smart-agriculture.git
+# Clone
+git clone https://github.com/EveMichelle/kenya-smart-agriculture.git
 cd kenya-smart-agriculture
 
-# Create and activate environment
+# Set up environment
 conda create -n kenya-agri python=3.10
 conda activate kenya-agri
-
-# Install dependencies
 pip install -r requirements.txt
-```
 
-### Add Your Data
-
-Place your 4 raw datasets in the correct folders:
-```
-data/raw/weather/kenya_weather_all_counties.csv
-data/raw/food_security/kenya_ipc.csv
-data/raw/prices/knbs_cpi_raw_text.csv
-data/raw/news/kenya_agri_news_raw.csv
-```
-
-### Run the Full Pipeline
-
-```bash
-python main.py
-```
-
-### Run Notebooks Manually (CRISP-DM order)
-
-```bash
-jupyter lab
-# Open: notebooks/final_notebook.ipynb
-# Or run sequentially: 01 → 02 → 03 → 04 → 05 → 06 → 07
-```
-
-### Launch the App
-
-```bash
-streamlit run app/streamlit_app.py
-```
-
-### Run Alerts
-
-```bash
-python app/trigger_alerts.py
+# Add raw data to data/raw/ subfolders, then:
+python main.py           # Run full pipeline
+streamlit run app/streamlit_app.py   # Launch app
 ```
 
 ---
@@ -223,57 +185,39 @@ python app/trigger_alerts.py
 ## Models
 
 ### Model 1 — Food Security Classification
-
-- **Algorithm:** Logistic Regression (baseline) → XGBoost (primary)
-- **Data:** NASA POWER weather features + FEWS NET IPC labels
+- **Algorithm:** Logistic Regression (baseline) → XGBoost
+- **Features:** NASA weather (SPI-3, rainfall, temperature, dry days)
 - **Target:** IPC Phase per county (1=Minimal, 2=Stressed, 3=Crisis)
-- **Key feature:** SPI-3 (Standardised Precipitation Index — 3-month drought signal)
-- **Output:** County-level food security phase prediction
 
 ### Model 2 — Food Price Forecasting
-
-- **Algorithm:** ARIMA(1,1,1) (baseline) → Facebook Prophet (primary)
-- **Data:** KNBS CPI monthly food price index extracted from raw PDFs
-- **Target:** Monthly overall CPI and commodity prices
-- **Output:** 8-week price forecast with confidence intervals
+- **Algorithm:** ARIMA (baseline) → Facebook Prophet
+- **Features:** KNBS monthly CPI + lagged NASA rainfall
+- **Target:** Monthly food CPI index
 
 ### Model 3 — County Recommendation
+- **Algorithm:** Cosine similarity on weather + IPC feature vectors
+- **Output:** Similar counties ranked by food security composite score
 
-- **Algorithm:** MinMaxScaler + Cosine Similarity (content-based filtering)
-- **Data:** NASA weather profiles + IPC phases per county
-- **Output:** Top similar counties ranked by weather-food security composite score
-
-### Model 4 — NLP Sentiment & Topics (Stretch Goal)
-
-- **Algorithm:** VADER (baseline) → DistilBERT (primary) → BERTopic (topics)
-- **Data:** 300 scraped Kenya News Agency agricultural headlines
-- **Output:** Sentiment score per article + topic clusters
+### Model 4 — NLP Sentiment *(stretch goal)*
+- **Algorithm:** VADER (baseline) → DistilBERT → BERTopic
+- **Data:** 300 Kenya News Agency agricultural headlines
 
 ---
 
-## Key Metrics
+## Evaluation Targets
 
-| Metric | Definition | Used In |
+| Model | Metric | Target |
 |---|---|---|
-| **SPI-3** | (rainfall - 3-month mean) / std — drought severity index | Model 1 primary feature |
-| **IPC Phase** | Food security classification 1–3 (FEWS NET standard) | Model 1 target |
-| **MAPE** | Mean Absolute Percentage Error | Model 2 evaluation |
-| **Weighted F1** | F1 score weighted by class frequency (handles imbalance) | Model 1 evaluation |
-| **Precision@3** | How often top 3 recommended counties are relevant | Model 3 evaluation |
-| **VADER Compound** | Sentiment score -1 (negative) to +1 (positive) | Model 4 baseline |
+| Food Security Classification | Weighted F1 | > 0.70 |
+| Price Forecasting | MAPE | < 15% |
+| County Recommendation | Precision@3 | > 0.60 |
+| Sentiment NLP | Macro F1 | > 0.70 vs VADER baseline |
 
 ---
 
-## Model Evaluation
+## Key Findings
 
-| Model | Metric | Baseline | Primary Model | Target |
-|---|---|---|---|---|
-| Food Security Classification | Weighted F1 | — | — | > 0.70 |
-| Price Forecasting | MAPE | — | — | < 15% |
-| County Recommendation | Precision@3 | — | — | > 0.60 |
-| Sentiment NLP | Macro F1 | — | — | > 0.70 |
-
-*Results updated as models are trained.*
+*Updated as models are trained.*
 
 ---
 
@@ -281,31 +225,21 @@ python app/trigger_alerts.py
 
 | Finding | Recommendation |
 |---|---|
-| SPI-3 < -1.0 predicts IPC Phase 3 in northern counties | Deploy automated monthly drought alerts to county agricultural officers |
+| SPI-3 < -1.0 predicts IPC Phase 3 in northern counties | Automate monthly drought alerts to county agricultural officers |
 | 2–3 month lag between rainfall deficit and price spikes | Trigger food stock pre-positioning when SPI-3 drops below -0.5 |
-| 49% of counties in Phase 3 (March 2026 snapshot) | Prioritise Turkana, Garissa, Wajir, Mandera, Marsabit for immediate intervention |
-| Negative news sentiment spikes precede IPC assessments | Use news sentiment as early warning signal for field verification |
-
----
-
-## Live Dashboard
-
-**[Streamlit App](https://kenya-smart-agriculture.streamlit.app)** *(update after deployment)*
-**[Tableau Dashboard](https://public.tableau.com)** *(update after publishing)*
+| 49% of counties in Phase 3 (March 2026) | Prioritise Turkana, Garissa, Wajir, Mandera, Marsabit for intervention |
 
 ---
 
 ## Acknowledgments
 
-- NASA Langley Research Center for the POWER API (public domain)
-- Famine Early Warning Systems Network (FEWS NET) for IPC data
-- Kenya National Bureau of Statistics (KNBS) for monthly CPI reports
-- Kenya News Agency for publicly accessible agricultural news
+- NASA Langley Research Center — POWER API (public domain)
+- Famine Early Warning Systems Network (FEWS NET)
+- Kenya National Bureau of Statistics (KNBS)
+- Kenya News Agency
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License**.
-
-*Data Science Capstone — Phase 5 | Flatiron School | May 2026*
+MIT License — see [LICENSE](LICENSE) for details.
