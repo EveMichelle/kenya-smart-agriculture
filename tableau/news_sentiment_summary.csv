@@ -1,0 +1,4 @@
+month_year,positive_count,negative_count,neutral_count,avg_vader_score
+Mar-2026,45,22,33,0.12
+Apr-2026,38,31,31,-0.05
+May-2026,52,18,30,0.18

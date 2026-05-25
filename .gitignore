@@ -1,0 +1,72 @@
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual environments ───────────────────────────────────────
+.env
+.venv
+venv/
+env/
+ENV/
+
+# ── Jupyter Notebooks ──────────────────────────────────────────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# ── Raw data (large files — add to repo manually if small) ────
+data/raw/weather/*.csv
+data/raw/weather/*.parquet
+data/raw/food_security/*.csv
+data/raw/prices/*.csv
+data/raw/news/*.csv
+
+# ── Processed data ─────────────────────────────────────────────
+data/processed/*.csv
+data/processed/*.parquet
+data/processed/*.pkl
+
+# ── Model artefacts (large files) ─────────────────────────────
+models/saved/*.pkl
+models/saved/*.h5
+models/saved/*.pt
+models/saved/*.bin
+
+# ── Reports / figures (auto-generated) ────────────────────────
+reports/figures/*.png
+reports/figures/*.jpg
+reports/figures/*.svg
+
+# ── IDE / OS ──────────────────────────────────────────────────
+.idea/
+.vscode/
+*.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# ── Secrets / credentials ─────────────────────────────────────
+.env
+*.env
+secrets.json
+credentials.json
+config/secrets.py
+
+# ── Logs ──────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Coverage ──────────────────────────────────────────────────
+.coverage
+htmlcov/
+
+# ── Temporary files ───────────────────────────────────────────
+*.tmp
+*.temp
+~$*

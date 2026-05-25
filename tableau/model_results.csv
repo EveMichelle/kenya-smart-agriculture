@@ -1,0 +1,4 @@
+model,f1_weighted,accuracy,module
+Rule-Based,,,IPC
+Logistic Regression,,,IPC
+XGBoost,,,IPC
