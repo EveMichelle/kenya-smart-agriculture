@@ -1,0 +1,48 @@
+county,ipc_phase,zone_count,has_humanitarian,period_start,period_end,ipc_phase_label
+Baringo,2,10,False,2026-03-01,2026-05-01,Stressed
+Bomet,1,5,False,2026-03-01,2026-05-01,Minimal
+Bungoma,1,10,False,2026-03-01,2026-05-01,Minimal
+Busia,1,11,False,2026-03-01,2026-05-01,Minimal
+Elgeyo Marakwet,1,10,False,2026-03-01,2026-05-01,Minimal
+Embu,2,5,False,2026-03-01,2026-05-01,Stressed
+Garissa,3,34,False,2026-03-01,2026-05-01,Crisis
+Homa Bay,1,15,False,2026-03-01,2026-05-01,Minimal
+Isiolo,3,19,False,2026-03-01,2026-05-01,Crisis
+Kajiado,2,9,False,2026-03-01,2026-05-01,Stressed
+Kakamega,1,12,False,2026-03-01,2026-05-01,Minimal
+Kericho,1,6,False,2026-03-01,2026-05-01,Minimal
+Kiambu,1,16,False,2026-03-01,2026-05-01,Minimal
+Kilifi,2,12,False,2026-03-01,2026-05-01,Stressed
+Kirinyaga,1,4,False,2026-03-01,2026-05-01,Minimal
+Kisii,1,9,False,2026-03-01,2026-05-01,Minimal
+Kisumu,1,14,False,2026-03-01,2026-05-01,Minimal
+Kitui,3,9,False,2026-03-01,2026-05-01,Crisis
+Kwale,2,8,False,2026-03-01,2026-05-01,Stressed
+Laikipia,2,5,False,2026-03-01,2026-05-01,Stressed
+Lamu,3,13,False,2026-03-01,2026-05-01,Crisis
+Machakos,1,12,False,2026-03-01,2026-05-01,Minimal
+Makueni,3,12,False,2026-03-01,2026-05-01,Crisis
+Mandera,3,41,False,2026-03-01,2026-05-01,Crisis
+Marsabit,3,29,False,2026-03-01,2026-05-01,Crisis
+Meru,3,14,False,2026-03-01,2026-05-01,Crisis
+Migori,1,14,False,2026-03-01,2026-05-01,Minimal
+Mombasa,1,6,False,2026-03-01,2026-05-01,Minimal
+Muranga,1,7,False,2026-03-01,2026-05-01,Minimal
+Nairobi,1,19,False,2026-03-01,2026-05-01,Minimal
+Nakuru,1,13,False,2026-03-01,2026-05-01,Minimal
+Nandi,1,7,False,2026-03-01,2026-05-01,Minimal
+Narok,2,17,False,2026-03-01,2026-05-01,Stressed
+Nyamira,1,4,False,2026-03-01,2026-05-01,Minimal
+Nyandarua,1,6,False,2026-03-01,2026-05-01,Minimal
+Nyeri,1,6,False,2026-03-01,2026-05-01,Minimal
+Samburu,3,25,False,2026-03-01,2026-05-01,Crisis
+Siaya,1,8,False,2026-03-01,2026-05-01,Minimal
+Taita Taveta,2,5,False,2026-03-01,2026-05-01,Stressed
+Tana River,3,34,False,2026-03-01,2026-05-01,Crisis
+Tharaka Nithi,1,5,False,2026-03-01,2026-05-01,Minimal
+Trans Nzoia,1,8,False,2026-03-01,2026-05-01,Minimal
+Turkana,3,47,False,2026-03-01,2026-05-01,Crisis
+Uasin Gishu,1,6,False,2026-03-01,2026-05-01,Minimal
+Vihiga,1,6,False,2026-03-01,2026-05-01,Minimal
+Wajir,3,43,False,2026-03-01,2026-05-01,Crisis
+West Pokot,2,10,False,2026-03-01,2026-05-01,Stressed

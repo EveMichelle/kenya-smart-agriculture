@@ -28,9 +28,6 @@ data/raw/prices/*.csv
 data/raw/news/*.csv
 
 # ── Processed data ─────────────────────────────────────────────
-data/processed/*.csv
-data/processed/*.parquet
-data/processed/*.pkl
 
 # ── Model artefacts (large files) ─────────────────────────────
 models/saved/*.pkl
@@ -39,9 +36,6 @@ models/saved/*.pt
 models/saved/*.bin
 
 # ── Reports / figures (auto-generated) ────────────────────────
-reports/figures/*.png
-reports/figures/*.jpg
-reports/figures/*.svg
 
 # ── IDE / OS ──────────────────────────────────────────────────
 .idea/
