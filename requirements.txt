@@ -8,8 +8,6 @@ xgboost
 shap
 prophet
 statsmodels
-geopandas
-shapely
 nltk
 vaderSentiment
 joblib
