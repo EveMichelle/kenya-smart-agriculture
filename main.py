@@ -11,15 +11,15 @@ Steps:
     1 → Extract & validate raw data
     2 → Clean & engineer features
     3 → Merge master dataset
-    4 → Train Model 1 (Food Security Classification)
-    5 → Train Model 2 (Price Forecasting)
-    6 → Train Model 3 (Recommendation System)
+    4 → Train Model 1 — Food Security Classification
+    5 → Train Model 2 — Price Forecasting
+    6 → Train Model 3 — County Recommendation
 """
 
 import argparse
-import sys
 import os
 import time
+
 
 def run_step(step_num, step_name, module_path):
     print(f"\n{'█'*55}")
@@ -41,12 +41,12 @@ def run_step(step_num, step_name, module_path):
 
 
 STEPS = {
-    1: ("Extract & Validate Data",     "scripts/extract_data.py"),
-    2: ("Clean & Feature Engineering", "scripts/prepare_data.py"),
-    3: ("Merge Master Dataset",        "scripts/merge_data.py"),
-    4: ("Train Model 1 — IPC Classifier", "scripts/train_model1.py"),
-    5: ("Train Model 2 — Price Forecast", "scripts/train_model2.py"),
-    6: ("Train Model 3 — Recommendation","scripts/train_model3.py"),
+    1: ("Extract & Validate Data",                 "scripts/extract_data.py"),
+    2: ("Clean & Feature Engineering",             "scripts/prepare_data.py"),
+    3: ("Merge Master Dataset",                    "scripts/merge_data.py"),
+    4: ("Train Model 1 — Food Security Classifier","scripts/train_food_security.py"),
+    5: ("Train Model 2 — Price Forecasting",       "scripts/train_price_forecast.py"),
+    6: ("Train Model 3 — County Recommendation",   "scripts/train_recommendation.py"),
 }
 
 
@@ -77,7 +77,6 @@ def main():
                 print(f"\n  ⚠️  Stopping at step {num}. Fix the error and re-run.")
                 break
 
-    # Summary
     print(f"\n{'═'*55}")
     print("  PIPELINE SUMMARY")
     print(f"{'═'*55}")
