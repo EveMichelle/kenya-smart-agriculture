@@ -148,11 +148,21 @@ def score_crops(rainfall_mm, temp_c, drought_freq, season="MAM"):
 # HOME
 # ────────────────────────────────────────────────────────────────
 if page == "🏠 Home":
-    st.title("🌾 Kenya Smart Agriculture & Market Intelligence Platform")
     st.markdown("""
-    > *Using NASA satellite weather data to predict food security risk, forecast food prices,
-    and recommend crops to farmers across all 47 counties in Kenya.*
-    """)
+    <div style="background:linear-gradient(135deg,#1B5E20 0%,#2E7D32 50%,#1565C0 100%);
+                border-radius:16px;padding:36px;text-align:center;margin-bottom:20px;color:white">
+        <div style="font-size:3rem">🇰🇪 🌾</div>
+        <div style="font-size:1.8rem;font-weight:800;margin:8px 0">Kenya Smart Agriculture Platform</div>
+        <div style="font-size:0.95rem;opacity:0.9;max-width:700px;margin:0 auto">
+            Using NASA satellite weather data to predict food security risk,
+            forecast food prices, and recommend crops to farmers across all 47 counties in Kenya.
+        </div>
+    </div>""", unsafe_allow_html=True)
+    st.info("📖 **How to use this app:** Navigate using the menu on the left. "
+            "🗺️ Food Security Map shows which counties are in food crisis right now. "
+            "📈 Price Forecast shows how food prices have changed and where they are heading. "
+            "🌱 Crop Recommendation tells you what to plant based on your county weather and current market prices. "
+            "📰 News shows what Kenyan farmers are reading and how they feel.")
 
     col1, col2, col3, col4 = st.columns(4)
     for col, num, label in [
@@ -220,6 +230,7 @@ if page == "🏠 Home":
 elif page == "🗺️ Food Security Map":
     st.title("🗺️ Food Security Risk Map")
     st.caption("IPC phase per county — FEWS NET, March 2026")
+    st.markdown("> 🍽️ **What does this mean?** The IPC scale measures how serious the food situation is in each county. Phase 1 (green) means people have enough food. Phase 2 (yellow) means some people are struggling. Phase 3 (red) means there is a serious food crisis and people need help urgently.")
 
     if data["ipc"] is not None:
         ipc = data["ipc"]
@@ -260,33 +271,65 @@ elif page == "🗺️ Food Security Map":
             "Nyamira":(-0.57,34.93),"Nairobi":(-1.29,36.82),
         }
 
-        map_data = []
-        for _, row in ipc.iterrows():
-            county = row["county"]
-            if county in COUNTY_COORDS:
-                lat, lon = COUNTY_COORDS[county]
-                map_data.append({
-                    "County": county,
-                    "Latitude": lat,
-                    "Longitude": lon,
-                    "Phase": row["ipc_phase"],
-                    "Label": phase_labels.get(row["ipc_phase"],""),
-                    "Colour": "#66BB6A" if row["ipc_phase"]==1 else
-                              "#FFA726" if row["ipc_phase"]==2 else "#EF5350",
-                })
-        map_df = pd.DataFrame(map_data)
+        # Try choropleth with shapefile, fallback to scatter map
+        shp_path = "data/raw/kenya_shapefiles/gadm41_KEN_1.shp"
+        try:
+            import geopandas as gpd
+            import json
+            kenya_shp = gpd.read_file(shp_path)
+            kenya_shp["county"] = kenya_shp["NAME_1"].replace({
+                "Elgeyo-Marakwet":"Elgeyo Marakwet","Murang'a":"Muranga",
+                "Trans-Nzoia":"Trans Nzoia","Homa-Bay":"Homa Bay",
+            })
+            kenya_geo = kenya_shp.merge(
+                ipc[["county","ipc_phase","ipc_phase_label"]], on="county", how="left"
+            )
+            kenya_geo["ipc_phase"] = kenya_geo["ipc_phase"].fillna(1)
+            geojson = json.loads(kenya_geo.to_json())
 
-        fig_map = px.scatter_mapbox(
-            map_df, lat="Latitude", lon="Longitude",
-            color="Label", size=[15]*len(map_df),
-            color_discrete_map={"Minimal":"#66BB6A","Stressed":"#FFA726","Crisis":"#EF5350"},
-            hover_name="County",
-            hover_data={"Label":True,"Latitude":False,"Longitude":False},
-            mapbox_style="carto-positron",
-            zoom=5, center={"lat":0.5,"lon":37.5},
-            title="Kenya Food Security Risk Map — IPC Phase by County (March 2026)",
-            height=550,
-        )
+            fig_map = px.choropleth_mapbox(
+                kenya_geo, geojson=geojson,
+                locations=kenya_geo.index,
+                color="ipc_phase",
+                color_continuous_scale=[[0,"#66BB6A"],[0.5,"#FFA726"],[1,"#EF5350"]],
+                range_color=[1,3],
+                hover_name="county",
+                hover_data={"ipc_phase_label":True,"ipc_phase":False},
+                mapbox_style="carto-positron",
+                zoom=5, center={"lat":0.5,"lon":37.5},
+                opacity=0.8,
+                title="Kenya Food Security Risk Map — IPC Phase by County (March 2026)",
+                height=560,
+            )
+            fig_map.update_layout(
+                margin=dict(t=40,b=0,l=0,r=0),
+                coloraxis_colorbar=dict(
+                    title="IPC Phase",
+                    tickvals=[1,2,3],
+                    ticktext=["Phase 1<br>Minimal","Phase 2<br>Stressed","Phase 3<br>Crisis"],
+                )
+            )
+        except Exception:
+            # Fallback to scatter map
+            map_data = []
+            for _, row in ipc.iterrows():
+                county = row["county"]
+                if county in COUNTY_COORDS:
+                    lat, lon = COUNTY_COORDS[county]
+                    map_data.append({
+                        "County": county, "Latitude": lat, "Longitude": lon,
+                        "Label": phase_labels.get(row["ipc_phase"],""),
+                    })
+            map_df = pd.DataFrame(map_data)
+            fig_map = px.scatter_mapbox(
+                map_df, lat="Latitude", lon="Longitude",
+                color="Label", size=[15]*len(map_df),
+                color_discrete_map={"Minimal":"#66BB6A","Stressed":"#FFA726","Crisis":"#EF5350"},
+                hover_name="County",
+                mapbox_style="carto-positron",
+                zoom=5, center={"lat":0.5,"lon":37.5},
+                height=550,
+            )
         fig_map.update_layout(margin=dict(t=40,b=0,l=0,r=0))
         st.plotly_chart(fig_map, use_container_width=True)
 
@@ -314,6 +357,7 @@ elif page == "🗺️ Food Security Map":
 elif page == "📈 Price Forecast":
     st.title("📈 Kenya Food Price Forecast")
     st.caption("KNBS CPI 2020–2025 + 8-month Prophet forecast")
+    st.markdown("> 📈 **What is the CPI?** The Consumer Price Index (CPI) tracks how much food prices have gone up or down. When CPI rises, food costs more. Kenya's CPI has gone up 35% since 2020 — meaning food that cost KES 100 in 2020 now costs KES 135. The forecast shows where prices are likely to go over the next 8 months.")
 
     if data["knbs"] is not None:
         knbs = data["knbs"].copy()
@@ -364,7 +408,8 @@ elif page == "📈 Price Forecast":
             line=dict(color="#E65100",width=2.5,dash="dash"),
             marker=dict(size=6,symbol="circle-open"),
         ))
-        fig_cpi.add_vline(x="2025-05-01", line_dash="dot", line_color="grey",
+        fig_cpi.add_vline(x=pd.Timestamp("2025-05-01").timestamp()*1000,
+                          line_dash="dot", line_color="grey",
                           annotation_text="Last known data")
         fig_cpi.update_layout(
             title="Kenya Overall CPI — Historical + 8-Month Forecast",
@@ -518,6 +563,7 @@ elif page == "🌱 Crop Recommendation":
 elif page == "📰 News Sentiment":
     st.title("📰 Agricultural News Sentiment")
     st.caption("Kenya News Agency — 300 headlines, 2025–2026")
+    st.markdown("> 📰 **What is sentiment analysis?** We read 300 news headlines from the Kenya News Agency and automatically scored whether each headline sounds positive, negative, or neutral. A positive score means the news is about good things happening in farming. A negative score means the news is about problems — like drought, disease outbreaks, or falling prices.")
 
     if data["news"] is not None:
         news = data["news"].copy()
