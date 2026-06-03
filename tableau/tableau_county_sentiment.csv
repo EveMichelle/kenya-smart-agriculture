@@ -1,0 +1,21 @@
+county,mentions,mean_sentiment,ipc_phase
+Vihiga,12,0.32,1
+Turkana,9,0.04,3
+Kirinyaga,6,0.07,1
+Busia,5,0.45,1
+Kwale,5,0.29,2
+Migori,5,0.13,1
+Nakuru,5,0.17,1
+West Pokot,4,0.24,2
+Nandi,3,0.26,1
+Kiambu,2,0.26,1
+Elgeyo Marakwet,4,0.3,1
+Kericho,4,0.13,1
+Siaya,2,0.22,1
+Meru,2,0.2,3
+Machakos,1,0.65,1
+Narok,2,0.35,1
+Mandera,1,0.61,3
+Embu,2,0.0,2
+Kisumu,2,0.05,1
+Kajiado,2,-0.07,2

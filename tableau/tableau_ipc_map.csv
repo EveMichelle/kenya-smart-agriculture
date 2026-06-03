@@ -1,0 +1,48 @@
+county,ipc_phase,ipc_label,latitude,longitude,annual_rainfall_mm,mean_temp_c,drought_freq_pct
+Baringo,2,Stressed,0.67,36.08,946,22.2,36
+Bomet,1,Minimal,-0.78,35.35,1404,19.5,22
+Bungoma,1,Minimal,0.56,34.56,1705,22.2,36
+Busia,1,Minimal,0.43,34.11,1706,22.2,36
+Elgeyo Marakwet,1,Minimal,0.78,35.52,411,21.3,86
+Embu,2,Stressed,-0.54,37.46,1099,20.4,39
+Garissa,3,Crisis,-0.45,39.64,620,27.7,81
+Homa Bay,1,Minimal,-0.52,34.45,2288,23.7,22
+Isiolo,3,Crisis,0.36,37.58,889,22.9,64
+Kajiado,2,Stressed,-1.85,36.78,522,20.7,86
+Kakamega,1,Minimal,0.28,34.75,2105,18.9,25
+Kericho,1,Minimal,-0.37,35.28,1200,19.5,30
+Kiambu,1,Minimal,-1.03,36.81,1456,19.8,25
+Kilifi,2,Stressed,-3.51,39.91,800,26.5,50
+Kirinyaga,1,Minimal,-0.66,37.38,1200,19.5,25
+Kisii,1,Minimal,-0.68,34.77,1400,20.5,25
+Kisumu,1,Minimal,-0.1,34.76,1500,21.5,25
+Kitui,3,Crisis,-1.37,38.01,600,24.0,60
+Kwale,2,Stressed,-4.18,39.46,700,25.0,55
+Laikipia,2,Stressed,0.36,36.78,800,21.0,45
+Lamu,3,Crisis,-2.27,40.9,400,26.0,70
+Machakos,1,Minimal,-1.52,37.26,700,22.0,45
+Makueni,3,Crisis,-2.26,37.62,550,23.5,65
+Mandera,3,Crisis,3.94,41.86,200,30.5,95
+Marsabit,3,Crisis,2.33,37.99,180,28.0,90
+Meru,3,Crisis,0.05,37.65,900,21.0,50
+Migori,1,Minimal,-1.06,34.47,1300,22.0,30
+Mombasa,1,Minimal,-4.04,39.67,900,26.0,55
+Muranga,1,Minimal,-0.72,37.15,1200,19.5,30
+Nairobi,1,Minimal,-1.29,36.82,416,20.4,86
+Nakuru,1,Minimal,-0.3,36.08,1419,15.4,31
+Nandi,1,Minimal,0.18,35.1,1100,20.0,30
+Narok,1,Minimal,-1.09,35.87,700,21.5,40
+Nyamira,1,Minimal,-0.57,34.93,1500,19.0,20
+Nyandarua,1,Minimal,-0.18,36.58,1200,18.5,25
+Nyeri,1,Minimal,-0.42,36.95,1300,18.5,25
+Samburu,3,Crisis,1.22,36.9,350,25.0,75
+Siaya,1,Minimal,-0.06,34.29,1400,21.5,25
+Taita Taveta,2,Stressed,-3.32,38.48,600,23.0,50
+Tana River,3,Crisis,-1.5,39.5,300,27.5,85
+Tharaka Nithi,1,Minimal,-0.2,37.8,900,20.0,35
+Trans Nzoia,1,Minimal,1.06,35.0,1100,21.0,35
+Turkana,3,Crisis,3.12,35.6,189,29.7,94
+Uasin Gishu,1,Minimal,0.51,35.27,1050,20.5,30
+Vihiga,1,Minimal,0.08,34.72,1706,22.2,36
+Wajir,3,Crisis,1.75,40.06,250,30.0,88
+West Pokot,2,Stressed,1.62,35.12,500,25.0,60

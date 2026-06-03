@@ -1,0 +1,8 @@
+Module,Model,Metric,Score,Target,Target_Met,Primary
+Food Security,Rule-Based,F1,0.382,0.7,No,No
+Food Security,Logistic Regression,F1,0.679,0.7,No,No
+Food Security,XGBoost,F1,0.738,0.7,Yes,Yes
+Price Forecast,ARIMA,MAPE%,0.81,15.0,Yes,No
+Price Forecast,Prophet,MAPE%,0.81,15.0,Yes,Yes
+Recommendation,NASA+WFP,Coverage%,100.0,100.0,Yes,Yes
+NLP Sentiment,VADER,Positive%,47.3,30.0,Yes,Yes
