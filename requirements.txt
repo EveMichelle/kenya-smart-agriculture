@@ -61,3 +61,53 @@ streamlit==1.32.2
 # ── Notebook utilities ─────────────────────────────────────────
 ipykernel==6.29.3
 ipywidgets==8.1.2
+
+
+# Kenya Smart Agriculture — Dependencies
+# Install: pip install -r requirements.txt
+# Environment: conda create -n kenya-agri python=3.9
+
+# ── Data collection ────────────────────────────────────────────
+requests
+beautifulsoup4
+lxml
+tqdm
+urllib3
+
+# ── Data handling ──────────────────────────────────────────────
+pandas
+numpy
+openpyxl
+
+# ── Geospatial ─────────────────────────────────────────────────
+geopandas
+folium
+shapely
+
+# ── Visualisation ──────────────────────────────────────────────
+matplotlib
+seaborn
+plotly
+
+# ── Machine learning ───────────────────────────────────────────
+scikit-learn
+xgboost
+shap
+
+# ── Time series ────────────────────────────────────────────────
+prophet
+statsmodels
+
+# ── NLP ────────────────────────────────────────────────────────
+nltk
+vaderSentiment
+
+# ── Model serialisation ────────────────────────────────────────
+joblib
+
+# ── Deployment ─────────────────────────────────────────────────
+streamlit
+
+# ── Notebook utilities ─────────────────────────────────────────
+ipykernel
+ipywidgets
