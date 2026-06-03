@@ -1,4 +1,8 @@
+<div align="center">
+<img src="https://openmoji.org/data/color/svg/1F33E.svg" width="100" alt="Kenya Smart Agriculture"/>
+
 # Kenya Smart Agriculture & Market Intelligence Platform
+</div>
 
 ![Agriculture](https://img.shields.io/badge/Domain-Agriculture%20%7C%20Food%20Security-2E7D32?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white)
