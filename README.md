@@ -1,18 +1,29 @@
 <div align="center">
-<img src="https://openmoji.org/data/color/svg/1F33E.svg" width="100" alt="Kenya Smart Agriculture"/>
 
-# Kenya Smart Agriculture & Market Intelligence Platform
-</div>
+<img src="https://openmoji.org/data/color/svg/1F33E.svg" width="140" alt="Kenya Smart Agriculture"/>
 
-![Agriculture](https://img.shields.io/badge/Domain-Agriculture%20%7C%20Food%20Security-2E7D32?style=flat-square)
+<h1>Kenya Smart Agriculture & Market Intelligence Platform</h1>
+
+<p><em>Using NASA satellite weather data to predict food security risk, forecast food prices,<br>and recommend crops to farmers across all 47 counties in Kenya</em></p>
+
+<br>
+
+[![Streamlit App](https://img.shields.io/badge/🚀_Live_App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://kenya-smart-agriculture.streamlit.app)
+[![Tableau](https://img.shields.io/badge/📊_Dashboard-Tableau_Public-1F77B4?style=for-the-badge&logo=tableau&logoColor=white)](https://public.tableau.com/app/profile/eve.michelle/viz/KenyaSmartAgricultureMarketIntelligenceDashboard/Dashboard1)
+[![GitHub](https://img.shields.io/badge/💻_Code-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/EveMichelle/kenya-smart-agriculture)
+
+<br>
+
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat-square&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
-![Tableau](https://img.shields.io/badge/Tableau-Published-1F77B4?style=flat-square&logo=tableau&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-F1=0.738-189AB4?style=flat-square)
+![Prophet](https://img.shields.io/badge/Prophet-MAPE=0.81%25-2ECC71?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-**Built by [Eve Otieno](https://github.com/EveMichelle)** — Data Scientist, Nairobi, Kenya
+<br>
 
-**[Live App](https://kenya-smart-agriculture.streamlit.app)** | **[Tableau Dashboard](https://public.tableau.com/app/profile/eve.michelle/viz/KenyaSmartAgricultureMarketIntelligenceDashboard/Dashboard1)** | **[GitHub](https://github.com/EveMichelle/kenya-smart-agriculture)**
+**Built by [Eve Otieno](https://github.com/EveMichelle)** — Data Scientist, Nairobi, Kenya 🇰🇪
+
+</div>
 
 ---
 
@@ -103,11 +114,11 @@ All 5 datasets are raw and non-curated.
 
 | Dataset | Source | Records | Period |
 |---|---|---|---|
-| NASA POWER Weather | power.larc.nasa.gov | 409,811 rows | 2000–2023 |
-| FEWS NET IPC | fews.net | 640 rows | Mar 2026 |
-| KNBS CPI Reports | knbs.or.ke | 37 PDFs → 64 records | 2020–2025 |
-| WFP Food Prices | WFP VAM | 19,005 rows, 226 markets | 2006–2026 |
-| Kenya Agri News | kenyanews.go.ke | 300 articles | 2025–2026 |
+| NASA POWER Weather | [power.larc.nasa.gov](https://power.larc.nasa.gov) | 409,811 rows | 2000–2023 |
+| FEWS NET IPC | [fews.net](https://fews.net/data/acute-food-insecurity) | 640 rows | Mar 2026 |
+| KNBS CPI Reports | [knbs.or.ke](https://www.knbs.or.ke/cpi-and-inflation-rates/) | 37 PDFs → 64 records | 2020–2025 |
+| WFP Food Prices | [WFP VAM](https://dataviz.vam.wfp.org/economic/prices) | 19,005 rows, 226 markets | 2006–2026 |
+| Kenya Agri News | [kenyanews.go.ke](https://www.kenyanews.go.ke/category/agri/) | 300 articles | 2025–2026 |
 
 ---
 
@@ -184,4 +195,10 @@ python -m streamlit run app/streamlit_app.py
 
 ---
 
+<div align="center">
+
 MIT License © 2026 Eve Otieno
+
+[⭐ Star this repo](https://github.com/EveMichelle/kenya-smart-agriculture) | [🐛 Report an issue](https://github.com/EveMichelle/kenya-smart-agriculture/issues)
+
+</div>
