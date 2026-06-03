@@ -31,30 +31,28 @@ Kenya's food security problem is not caused by a lack of data. NASA has recorded
 ### 🏠 Home — Overview & Food Security Map
 > *47 counties coloured by IPC phase. 12 counties in Phase 3 Crisis as of March 2026.*
 
-![Home Page](presentation/screenshot_home.png)
+![Home Page](figures/Screenshot%202026-06-03%20165606.png)
 
 ---
 
 ### 🌱 Crop & Market Recommendation
 > *Select any county and season — get personalised crop recommendations backed by NASA weather data and live WFP market prices.*
 
-![Crop Recommendation](presentation/screenshot_crop.png)
+![Crop Recommendation](figures/Screenshot%202026-06-03%20165239.png)
 
 ---
 
 ### 📰 Agricultural News Sentiment
 > *300 Kenya News Agency headlines scored with VADER. 47% positive. Government Programmes most positive (0.42). Dairy & Macadamia most negative.*
 
-![News Sentiment](presentation/screenshot_sentiment.png)
+![News Sentiment](figures/Screenshot%202026-06-03%20165507.png)
 
 ---
 
 ### 📈 Kenya Food Price Forecast
 > *Facebook Prophet 8-month CPI forecast. MAPE = 0.81% on 12-month holdout — 18× better than the 15% target.*
 
-![Price Forecast](presentation/screenshot_forecast.png)
-
-> 💡 **To add your screenshots:** save the four app screenshots above as `presentation/screenshot_home.png`, `screenshot_crop.png`, `screenshot_sentiment.png`, and `screenshot_forecast.png`, then push to GitHub.
+![Price Forecast](figures/Screenshot%202026-06-03%20165020.png)
 
 ---
 
