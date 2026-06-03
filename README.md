@@ -26,6 +26,46 @@ Kenya's food security problem is not caused by a lack of data. NASA has recorded
 
 ---
 
+## Skills Demonstrated
+
+| Area | Tools & Methods |
+|---|---|
+| Data Engineering | NASA API, PDF extraction, web scraping, multi-source merging |
+| Machine Learning | XGBoost, cross-validation, SHAP explainability |
+| Time Series Forecasting | Facebook Prophet, ARIMA, holdout evaluation |
+| Natural Language Processing | VADER sentiment scoring, TF-IDF, K-Means topic modelling |
+| Geospatial Analytics | Choropleth mapping, county-level risk profiling across 47 counties |
+| Dashboard Development | Streamlit (deployed), Tableau Public |
+| Model Explainability | SHAP feature importance, business-level finding translation |
+| Software Engineering | Modular src/ library, reusable scripts, annual update pipeline |
+
+---
+
+## Results Snapshot
+
+| Module | Model | Metric | Result |
+|---|---|---|---|
+| 🗺️ Food Security Classification | XGBoost | Weighted F1 | **0.738** ✅ |
+| 📈 Price Forecasting | Facebook Prophet | MAPE | **0.81%** ✅ |
+| 🌱 Crop & Market Recommendation | NASA + WFP | Coverage | **10 crops × 226 markets** ✅ |
+| 📰 NLP Sentiment Analysis | VADER + TF-IDF | Sentiment distribution | **47.3% positive** ✅ |
+
+409,811 NASA weather records · 47 counties · 5 data sources · 8 notebooks · 1 deployed app
+
+---
+
+## Key Findings
+
+| # | Finding | Recommendation |
+|---|---|---|
+| 1 | **12 counties in IPC Phase 3 Crisis** (March 2026) — Turkana, Garissa, Wajir, Mandera, Marsabit and 7 others | Prioritise these counties for immediate intervention |
+| 2 | **NASA SPI-3 is the strongest predictor** of food insecurity | Deploy automated monthly drought alerts when SPI-3 drops below -1.0 |
+| 3 | **2–3 month lag** between rainfall deficit and price spikes | Pre-position WFP food stocks when SPI-3 drops below -0.5 |
+| 4 | **Kenya CPI rose 35%** since 2020 (107 → 144) | Forecast to reach 148 by January 2026 — continued price pressure expected |
+| 5 | **Negative news sentiment spikes precede IPC assessments** | Integrate news monitoring as an early warning signal for field verification |
+
+---
+
 ## App Screenshots
 
 ### 🏠 Home — Overview & Food Security Map
@@ -50,9 +90,36 @@ Kenya's food security problem is not caused by a lack of data. NASA has recorded
 ---
 
 ### 📈 Kenya Food Price Forecast
-> *Facebook Prophet 8-month CPI forecast. MAPE = 0.81% on 12-month holdout — 18× better than the 15% target.*
+> *Facebook Prophet 8-month CPI forecast. MAPE = 0.81% on the 12-month evaluation period.*
 
 ![Price Forecast](figures/Screenshot%202026-06-03%20165020.png)
+
+---
+
+## Architecture
+
+```
+Data Sources
+─────────────────────────────────────────
+NASA POWER (409,811 rows)   FEWS NET IPC
+KNBS CPI (37 PDFs)          WFP Markets
+Kenya News Agency (300 articles)
+                │
+                ▼
+    Data Cleaning & Feature Engineering
+    (notebooks 01–03, src/ modules)
+                │
+                ▼
+┌──────────────────────────────────────┐
+│  Food Security Classification        │  XGBoost · Weighted F1 = 0.738
+│  Food Price Forecasting              │  Prophet · MAPE = 0.81%
+│  Crop & Market Recommendation        │  NASA + WFP · 47 counties
+│  NLP Sentiment Analysis              │  VADER + TF-IDF · 300 articles
+└──────────────────────────────────────┘
+                │
+                ▼
+    Streamlit App (deployed)  +  Tableau Dashboard
+```
 
 ---
 
@@ -63,29 +130,6 @@ Kenya's food security problem is not caused by a lack of data. NASA has recorded
 | Food security phases assessed manually and quarterly | Emergency response arrives after the crisis has peaked |
 | Rainfall deficits drive price spikes 2–3 months later | Farmers and traders get blindsided by price shocks |
 | Hundreds of agricultural news articles published weekly, never synthesised | Policy makers miss early warning signals |
-
----
-
-## Four ML Modules — All Targets Met
-
-| Module | Model | Metric | Score | Target |
-|---|---|---|---|---|
-| 🗺️ Food Security Classification | XGBoost | Weighted F1 | **0.738** | > 0.70 ✅ |
-| 📈 Price Forecasting | Facebook Prophet | MAPE | **0.81%** | < 15% ✅ |
-| 🌱 Crop & Market Recommendation | NASA + WFP | Coverage | 10 crops × 226 markets | All 47 counties ✅ |
-| 📰 NLP Sentiment Analysis | VADER + TF-IDF | Positive % | **47.3%** | Baseline ✅ |
-
----
-
-## Key Findings
-
-| # | Finding | Recommendation |
-|---|---|---|
-| 1 | **12 counties in IPC Phase 3 Crisis** (March 2026) — Turkana, Garissa, Wajir, Mandera, Marsabit and 7 others | Prioritise these counties for immediate intervention |
-| 2 | **NASA SPI-3 is the strongest predictor** of food insecurity — drought explains the majority of the classification signal | Deploy automated monthly drought alerts when SPI-3 drops below -1.0 |
-| 3 | **2–3 month lag** between rainfall deficit and price spikes | Pre-position WFP food stocks when SPI-3 drops below -0.5 |
-| 4 | **Kenya CPI rose 35%** since 2020 (107 → 144) — forecast to reach 148 by January 2026 | Prepare for continued price pressure into 2026 |
-| 5 | **Negative news sentiment spikes precede IPC assessments** | Integrate news monitoring as an early warning signal for field verification |
 
 ---
 
@@ -163,6 +207,16 @@ python -m streamlit run app/streamlit_app.py
 | Smallholder Farmers | Which crops to plant and which markets offer the best prices |
 | Kenya Ministry of Agriculture | National food security trend monitoring |
 | KALRO | Weather-yield correlations for crop advisory updates |
+
+---
+
+## Future Improvements
+
+- Incorporate satellite vegetation indices (NDVI) alongside weather data
+- Add county-level crop yield prediction
+- Integrate seasonal weather forecasts for forward-looking recommendations
+- Build SMS-based crop recommendations for farmers without internet access
+- Deploy automated monthly model retraining pipeline as new data arrives
 
 ---
 
