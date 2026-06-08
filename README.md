@@ -11,6 +11,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-EveMichelle-black?style=for-the-badge&logo=github)](https://github.com/EveMichelle/kenya-smart-agriculture)
 [![Python](https://img.shields.io/badge/Python-3.9-blue?style=for-the-badge&logo=python)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-eve--michelle-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/eve-michelle)
 
 **Built by [Eve Otieno](https://github.com/EveMichelle) — Data Scientist, Nairobi, Kenya 🇰🇪**
 
